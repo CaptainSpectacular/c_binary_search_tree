@@ -8,7 +8,7 @@ typedef struct Node
     struct Node *right;
 }Node;
 
-Node insert(Node *node, int data)
+Node *insert(Node *node, int data)
 {
 	if (node->data == 0)
 	{
@@ -29,5 +29,25 @@ Node insert(Node *node, int data)
 		puts("Node already exists");
 	}
 
-	return *node;
+	return node;
+}
+
+int find(Node *node, int data)
+{
+    if (node->data == 0)
+    {
+        return -1;
+    }
+
+    if (data < node->data)
+    {
+        return find(node->left, data);
+    }
+    else if (data > node->data)
+    {
+        return find(node->right, data);
+    }
+
+
+	return node->data;
 }
