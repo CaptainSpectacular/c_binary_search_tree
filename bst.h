@@ -32,15 +32,12 @@ Node *insert(Node *node, int data)
 	return node;
 }
 
-int find(Node *node, int data)
+Node *find(Node *node, int data)
 {
-    if (node == NULL)
-    {
-        return -1;
-    }
+    if (node == NULL) {}
     else if (node->data == data)
     {
-        return node->data;
+        return node;
     }
     else if (data < node->data)
     {
@@ -63,3 +60,18 @@ void in_order(Node *root)
     printf("%d ", root->data);
     in_order(root->right);
 }
+
+void remove_node(Node *node, int data)
+{
+    Node *target = find(node, data);
+    if (target != NULL)
+    {
+        printf("Removing target value of %d...\n", target->data);
+        free(target);
+    }
+    else 
+    {
+        printf("Target with value %d does not exist", data);
+    }
+}
+
