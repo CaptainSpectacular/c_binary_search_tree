@@ -18,11 +18,11 @@ Node *insert(Node *node, int data)
 	}
 	else if (data > node->data)
 	{
-		insert(node->right, data);
+		return insert(node->right, data);
 	}
 	else if (data < node->data)
 	{
-		insert(node->left, data);
+		return insert(node->left, data);
 	}
 	else
 	{
@@ -34,12 +34,15 @@ Node *insert(Node *node, int data)
 
 int find(Node *node, int data)
 {
-    if (node->data == 0)
+    if (node == NULL)
     {
         return -1;
     }
-
-    if (data < node->data)
+    else if (node->data == data)
+    {
+        return node->data;
+    }
+    else if (data < node->data)
     {
         return find(node->left, data);
     }
@@ -47,7 +50,16 @@ int find(Node *node, int data)
     {
         return find(node->right, data);
     }
+}
 
+void in_order(Node *root)
+{
+    if (root->data == 0)
+    {
+        return;
+    }
 
-	return node->data;
+    in_order(root->left);
+    printf("%d ", root->data);
+    in_order(root->right);
 }
